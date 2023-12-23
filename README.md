@@ -39,4 +39,8 @@ The `notify_phonecall` flag is used to call a phone number - this is a paid serv
 
 # Run the container
 
-    docker run --rm -it -e CONFIG_PATH=/cfg/config.yml -v ./conf:/cfg fluxmonmon
+    docker run --rm -it -e CONFIG_PATH=/cfg/config.yml -v ./conf:/cfg translucentlink/fluxmonmon:2.0.0
+
+# Docker Container
+
+The docker container can be found at https://hub.docker.com/repository/docker/translucentlink/fluxmonmon.

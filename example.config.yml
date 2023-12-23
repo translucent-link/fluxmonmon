@@ -1,0 +1,24 @@
+cron_schedule: "*/5 * * * *"
+discord_webhook_url: "https://discord.com/api/webhooks/..."
+phonecall_webhook_url: "https://xxxxxxxxxxxxxxxx.pipedream.net"
+monitors:
+- name: "Arbitrum Sepolia Monitor"
+  etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  etherscan_api:  "https://api-sepolia.arbiscan.io/api"
+  report_healthy: false
+  notify_discord: true
+  feeds:
+  - code: fluxmon-feed1
+    address: "0x91F9C89891575C2E41edfFB5953565A9aE2Dbd9C"
+    minutesBeteenTxs: 45
+  - code: fluxmon-feed2
+    address: "0x667a18Ef90fe4DCF4f86B8471931A3e498fAD3BC"
+- name: "Arbitrum Monitor"
+  etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  etherscan_api:  "https://api.arbiscan.io/api"
+  report_healthy: false
+  notify_discord: true
+  notify_phonecall: true
+  feeds:
+  - code: fluxmon-feed3
+    address: "0x91F9C89891575C2E41edfFB5953565A9aE2Dbd9C"

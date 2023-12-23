@@ -66,6 +66,7 @@ async function main (cfg) {
 }
 
 async function run() {
+  console.log(`Loading config from ${process.env.CONFIG_PATH}`)
   const cfg = await loadConfig(process.env.CONFIG_PATH)
 
   console.log(`Cron schedule: ${cfg.cron_schedule}`)

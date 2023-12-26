@@ -3,6 +3,11 @@ const fetch = require('cross-fetch')
 const cron = require('node-cron')
 const yaml = require('yaml')
 const fs = require('fs')
+const { ethers } = require("ethers");
+
+FLUXMON_ABI = [
+  "function latestTimestamp() view returns (uint256)",
+]
 
 async function loadConfig(yamlPath) {
   const yamlContents = await fs.promises.readFile(yamlPath, 'utf8')
@@ -27,20 +32,22 @@ function findMinutesBeteenTxs(feed) {
   return (feed.minutesBeteenTxs || 60) + 1
 }
 
+async function getFluxMonLatestTimestamp(monitor, feed) {
+  const provider = new ethers.providers.JsonRpcProvider(monitor.rpc_url);
+  const contract = new ethers.Contract(feed.address, FLUXMON_ABI, provider);
+  return contract.latestTimestamp()
+}
+
 async function main (cfg) {
   console.log('Running monitors...')
   for (const monitor of cfg.monitors) {
     console.log(monitor.name)
     for (const feed of monitor.feeds) {
       const contractAddress = feed.address;
-      console.log(`Checking ${feed.code}...${contractAddress}`)
-      const url = `${monitor.etherscan_api}?module=account&action=txlist&address=${contractAddress}&sort=desc&apikey=${monitor.etherscan_api_key}`
-  
+      console.log(`Checking ${feed.code}...${contractAddress}`)  
       try {
-        const response = await fetch(url)
-        const data = await response.json()
-        const txnDates = data.result.map((result) => new Date(parseInt(result.timeStamp, 10)*1000))
-        const timeSinceLastTx = new Date() - txnDates[0]
+        const latestTimestamp = await getFluxMonLatestTimestamp(monitor, feed)
+        const timeSinceLastTx = new Date() - new Date(latestTimestamp*1000)
         const timeSinceLastTxInMinutes = timeSinceLastTx/1000/60
         const minutesBeteenTxs = findMinutesBeteenTxs(feed)
         if (timeSinceLastTxInMinutes > minutesBeteenTxs) {

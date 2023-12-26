@@ -3,8 +3,7 @@ discord_webhook_url: "https://discord.com/api/webhooks/..."
 phonecall_webhook_url: "https://xxxxxxxxxxxxxxxx.pipedream.net"
 monitors:
 - name: "Arbitrum Sepolia Monitor"
-  etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  etherscan_api:  "https://api-sepolia.arbiscan.io/api"
+  rpc_url: https://xxx.arbitrum-sepolia.quiknode.pro/123
   report_healthy: false
   notify_discord: true
   feeds:
@@ -14,8 +13,7 @@ monitors:
   - code: fluxmon-feed2
     address: "0x667a18Ef90fe4DCF4f86B8471931A3e498fAD3BC"
 - name: "Arbitrum Monitor"
-  etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  etherscan_api:  "https://api.arbiscan.io/api"
+  rpc_url: https://xxx.arbitrum-mainnet.quiknode.pro/123
   report_healthy: false
   notify_discord: true
   notify_phonecall: true

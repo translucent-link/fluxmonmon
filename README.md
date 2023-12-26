@@ -1,14 +1,13 @@
 # Fluxmonmon
 
-Version 2.0 introduces a new and more flexible configuration file format using YAML. 
+Version 2.1 introduces a new and more flexible configuration file format using YAML, using RPC nodes instead of Etherscan services, going directly to the chain to find the timestamp of the last feed update.
 
         cron_schedule: "*/5 * * * *"
         discord_webhook_url: "https://discord.com/api/webhooks/..."
         phonecall_webhook_url: "https://xxxxxxxxxxxxxxxx.pipedream.net"
         monitors:
         - name: "Arbitrum Sepolia Monitor"
-        etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        etherscan_api:  "https://api-sepolia.arbiscan.io/api"
+        rpc_url: https://xxx.arbitrum-sepolia.quiknode.pro/123
         report_healthy: false
         notify_discord: true
         feeds:
@@ -18,8 +17,7 @@ Version 2.0 introduces a new and more flexible configuration file format using Y
         - code: fluxmon-feed2
             address: "0x667a18Ef90fe4DCF4f86B8471931A3e498fAD3BC"
         - name: "Arbitrum Monitor"
-        etherscan_api_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        etherscan_api:  "https://api.arbiscan.io/api"
+        rpc_url: https://xxx.arbitrum-mainnet.quiknode.pro/123
         report_healthy: false
         notify_discord: true
         notify_phonecall: true

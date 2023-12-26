@@ -42,3 +42,10 @@ The `notify_phonecall` flag is used to call a phone number - this is a paid serv
 # Docker Container
 
 The docker container can be found at https://hub.docker.com/repository/docker/translucentlink/fluxmonmon.
+
+# Setting up Phonecall Notifications
+
+Phonecall notifications are done using [Pipedream](https://pipedream.com/) and [Twilio](https://www.twilio.com/). You need to create an account and create a new workflow. The workflow should be triggered by a webhook. The webhook URL should be used in the configuration file.
+
+Below is a screenshot as defined within Pipedream:
+![Pipedream Workflow](./images/pipedream-twilio.png)
